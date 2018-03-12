@@ -1,0 +1,29 @@
+{
+  "name": "Demo",
+  "unitTest": true,
+  "description": "",
+  "inputBinding": [],
+  "binding": [
+    {
+      "knob": {
+        "knobName": "genotypicFile",
+        "description": "Genotypic File",
+        "required": true,
+        "knobDataType": "FILE_UPLOAD",
+        "defaultValue": "",
+        "validationRule": "",
+        "tooltip": ""
+      },
+      "knobValue": "snpData.csv"
+    }
+  ],
+  "expIdentical": [
+    {
+      "expectedFile": "call_rates_exp.csv",
+      "actualFilepath": "call_rates.csv"
+    }
+  ],
+  "expSize": [],
+  "expPercentageIdentical": [],
+  "expExists": []
+}

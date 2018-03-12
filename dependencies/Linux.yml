@@ -1,0 +1,18 @@
+---
+#
+# Dependency script for callRateProgram,
+# Usage: ansible-playbook Linux.yml
+# Description: Script to install dependencies required by callRateProgram,
+#
+- hosts: all
+  tasks:
+  - name: Check if R exists
+    shell: command -v Rscript; if [ "$?" -eq 1 ];then exit 1;fi;
+    register: bash_result
+    failed_when: "bash_result.rc != 0"
+  - name: Install R packages
+    command: Rscript --slave --no-save --no-restore-history -e "if (! ('{{item}}' %in% installed.packages()[,'Package'])) install.packages(c('{{item}}'), repos=c('http://www.freestatistics.org/cran/'))"
+    register: r_result
+    failed_when: "r_result.rc != 0 or 'had non-zero exit status' in r_result.stderr"
+    with_items:
+    - getopt
